@@ -1,0 +1,37 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+
+# Next.js
+.next/
+out/
+
+# Python
+*.egg-info/
+.venv/
+venv/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Screenshots (local dev artifacts)
+*.png
+!framework-trends-tracker/reports_internal/output/charts/*.png
+!client_dashboard/public/icons/*.png
+
+# Environment
+.env
+.env.local
+.env.production
+
+# Build output
+dist/
+
+# Misc
+-p

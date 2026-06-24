@@ -4,6 +4,7 @@ interface Framework {
   framework: string;
   category: string;
   Market_Dominance_Score: number;
+  stars?: number;
   so_usage_pct?: number;
 }
 
@@ -11,12 +12,22 @@ interface FrameworkChartProps {
   data: Framework[];
 }
 
-export default function FrameworkChart({ data }: FrameworkChartProps) {
-  const sorted = [...data].sort((a, b) => b.Market_Dominance_Score - a.Market_Dominance_Score);
-  const maxScore = sorted[0]?.Market_Dominance_Score ?? 1;
+function StarRating({ stars, color }: { stars: number; color: string }) {
+  return (
+    <span className="text-xs font-medium tracking-wider" style={{ color }}>
+      {"★".repeat(stars)}
+      <span className="text-gray-300 dark:text-gray-600">{"★".repeat(5 - stars)}</span>
+    </span>
+  );
+}
 
-  const frontend = sorted.filter((f) => f.category === "Frontend");
-  const backend = sorted.filter((f) => f.category === "Backend");
+export default function FrameworkChart({ data }: FrameworkChartProps) {
+  const frontend = [...data]
+    .filter((f) => f.category === "Frontend")
+    .sort((a, b) => (b.stars ?? 0) - (a.stars ?? 0) || b.Market_Dominance_Score - a.Market_Dominance_Score);
+  const backend = [...data]
+    .filter((f) => f.category === "Backend")
+    .sort((a, b) => (b.stars ?? 0) - (a.stars ?? 0) || b.Market_Dominance_Score - a.Market_Dominance_Score);
 
   return (
     <div className="rounded-xl border border-gray-200 dark:border-gray-700/60 bg-white dark:bg-gray-900/80 p-6 shadow-sm">
@@ -24,18 +35,20 @@ export default function FrameworkChart({ data }: FrameworkChartProps) {
         Market Dominance Ranking
       </h3>
       <p className="text-xs text-gray-500 dark:text-gray-400 mb-6">
-        18 frameworks scored across GitHub, NPM/PyPI downloads & SO 2025 survey
+        18 frameworks rated ★1–5 per category based on GitHub, NPM/PyPI & SO 2025 survey
       </p>
 
       <div className="space-y-6">
-        <RankingGroup title="Frontend" items={frontend} maxScore={maxScore} color="#3B82F6" />
-        <RankingGroup title="Backend" items={backend} maxScore={maxScore} color="#14B8A6" />
+        <RankingGroup title="Frontend" items={frontend} color="#3B82F6" />
+        <RankingGroup title="Backend" items={backend} color="#14B8A6" />
       </div>
     </div>
   );
 }
 
-function RankingGroup({ title, items, maxScore, color }: { title: string; items: Framework[]; maxScore: number; color: string }) {
+function RankingGroup({ title, items, color }: { title: string; items: Framework[]; color: string }) {
+  const maxScore = items[0]?.Market_Dominance_Score ?? 1;
+
   return (
     <div>
       <p className="text-[11px] uppercase tracking-wider font-medium mb-2.5" style={{ color }}>
@@ -55,8 +68,8 @@ function RankingGroup({ title, items, maxScore, color }: { title: string; items:
                   style={{ width: `${Math.max(barWidth, 1)}%`, backgroundColor: color, opacity: 0.65 }}
                 />
               </div>
-              <span className="w-12 shrink-0 text-right text-xs font-medium text-gray-500 dark:text-gray-400 tabular-nums">
-                {fw.Market_Dominance_Score.toFixed(2)}
+              <span className="w-20 shrink-0 text-right">
+                <StarRating stars={fw.stars ?? 3} color={color} />
               </span>
             </div>
           );

@@ -6,6 +6,7 @@ interface Framework {
   stargazers_count: number;
   total_weekly_downloads: number;
   Market_Dominance_Score: number;
+  stars?: number;
   audience_label: string;
   pros: string[];
   cons: string[];
@@ -80,12 +81,13 @@ export default function InfographicCard({ data, maxScore = 1, maxStars = 1, maxD
         </div>
         <p className="text-xs text-gray-500 dark:text-gray-400 mb-4">{data.audience_label}</p>
 
-        {/* Score with progress bar */}
+        {/* Star Rating */}
         <div className="mb-4">
-          <div className="flex items-end justify-between mb-1.5">
-            <span className="text-[11px] uppercase tracking-wider text-gray-400 dark:text-gray-500">Dominance Score</span>
-            <span className="text-2xl font-bold text-gray-900 dark:text-white tabular-nums leading-none">
-              {data.Market_Dominance_Score.toFixed(2)}
+          <div className="flex items-center justify-between mb-1.5">
+            <span className="text-[11px] uppercase tracking-wider text-gray-400 dark:text-gray-500">Rating</span>
+            <span className="text-xl leading-none">
+              <span style={{ color: accentColor || '#F59E0B' }}>{"★".repeat(data.stars ?? 3)}</span>
+              <span className="text-gray-200 dark:text-gray-700">{"★".repeat(5 - (data.stars ?? 3))}</span>
             </span>
           </div>
           <div className="h-1.5 rounded-full bg-gray-100 dark:bg-gray-800 overflow-hidden">

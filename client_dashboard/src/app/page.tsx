@@ -15,6 +15,7 @@ interface Framework {
   norm_stargazers_count: number;
   norm_total_weekly_downloads: number;
   Market_Dominance_Score: number;
+  stars?: number;
   audience_label: string;
   pros: string[];
   cons: string[];

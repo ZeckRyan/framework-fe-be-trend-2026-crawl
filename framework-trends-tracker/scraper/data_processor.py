@@ -207,7 +207,31 @@ def normalize_and_score(df: pd.DataFrame, sources_used: list[str]) -> pd.DataFra
         print("[Processor] WARNING: No data sources available for scoring")
 
     df["Market_Dominance_Score"] = df["Market_Dominance_Score"].round(4)
+
+    # --- Per-category star rating (1-5) ---
+    df["stars"] = df.groupby("category")["Market_Dominance_Score"].transform(
+        _category_to_stars
+    )
+
     return df
+
+
+def _category_to_stars(series: pd.Series) -> pd.Series:
+    """Map a per-category score series to 1-5 stars using rank-based equal distribution.
+
+    Each star level (1-5) gets approximately the same number of frameworks,
+    preventing clustering that occurs with score-based normalization.
+    """
+    n = len(series)
+    if n == 0:
+        return series
+    if n == 1:
+        return pd.Series(5, index=series.index, dtype=int)
+    # Rank within category (highest score = rank 0)
+    ranks = series.rank(ascending=False, method="first") - 1  # 0-based
+    # Distribute evenly across 5 levels
+    stars = 5 - (ranks * 5 / n).astype(int).clip(0, 4)
+    return stars.astype(int)
 
 
 def inject_static_metadata(df: pd.DataFrame) -> pd.DataFrame:

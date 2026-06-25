@@ -25,6 +25,7 @@
       "norm_so_admired": 0.6443037974683544,
       "norm_so_desired": 0.49837133550488605,
       "Market_Dominance_Score": 0.2977,
+      "stars": 4,
       "audience_label": "Terbaik untuk MVP & Tim Kecil",
       "pros": [
         "Kurva belajar rendah",
@@ -57,6 +58,7 @@
       "norm_so_admired": 0.659493670886076,
       "norm_so_desired": 1.0,
       "Market_Dominance_Score": 0.9574,
+      "stars": 5,
       "audience_label": "Ekosistem Terbesar & Paling Fleksibel",
       "pros": [
         "Komunitas sangat besar",
@@ -89,6 +91,7 @@
       "norm_so_admired": 0.5759493670886076,
       "norm_so_desired": 0.485342019543974,
       "Market_Dominance_Score": 0.4338,
+      "stars": 5,
       "audience_label": "Standar Skala Enterprise",
       "pros": [
         "Performa SSR",
@@ -121,6 +124,7 @@
       "norm_so_admired": 0.5658227848101266,
       "norm_so_desired": 0.41042345276872966,
       "Market_Dominance_Score": 0.3059,
+      "stars": 4,
       "audience_label": "Solusi Enterprise Terstruktur",
       "pros": [
         "Opinionated framework",
@@ -153,6 +157,7 @@
       "norm_so_admired": 0.789873417721519,
       "norm_so_desired": 0.36156351791530944,
       "Market_Dominance_Score": 0.252,
+      "stars": 3,
       "audience_label": "Compiler-first, Performa Maksimal",
       "pros": [
         "Tanpa virtual DOM",
@@ -185,6 +190,7 @@
       "norm_so_admired": 0.5873417721518988,
       "norm_so_desired": 0.13029315960912052,
       "Market_Dominance_Score": 0.1492,
+      "stars": 2,
       "audience_label": "Vue Full-stack Meta-framework",
       "pros": [
         "SSR/SSG bawaan",
@@ -217,6 +223,7 @@
       "norm_so_admired": 0.7873417721518988,
       "norm_so_desired": 0.1921824104234528,
       "Market_Dominance_Score": 0.1878,
+      "stars": 2,
       "audience_label": "Content-first, Island Architecture",
       "pros": [
         "Zero JS by default",
@@ -249,6 +256,7 @@
       "norm_so_admired": 0.0,
       "norm_so_desired": 0.0,
       "Market_Dominance_Score": 0.0107,
+      "stars": 1,
       "audience_label": "Web Standards-first, Progressive Enhancement",
       "pros": [
         "Nested routing",
@@ -281,6 +289,7 @@
       "norm_so_admired": 0.7025316455696202,
       "norm_so_desired": 0.4234527687296417,
       "Market_Dominance_Score": 0.493,
+      "stars": 5,
       "audience_label": "Pilihan Utama AI & Data",
       "pros": [
         "Eksekusi asinkron",
@@ -313,6 +322,7 @@
       "norm_so_admired": 0.5759493670886076,
       "norm_so_desired": 0.3713355048859935,
       "Market_Dominance_Score": 0.5026,
+      "stars": 5,
       "audience_label": "Backend JS Ringan & Minimalis",
       "pros": [
         "Minimalis & ringan",
@@ -345,6 +355,7 @@
       "norm_so_admired": 0.679746835443038,
       "norm_so_desired": 0.3583061889250814,
       "Market_Dominance_Score": 0.2639,
+      "stars": 3,
       "audience_label": "Enterprise Java Teruji",
       "pros": [
         "Stabil & teruji",
@@ -377,6 +388,7 @@
       "norm_so_admired": 0.5873417721518988,
       "norm_so_desired": 0.3387622149837134,
       "Market_Dominance_Score": 0.2671,
+      "stars": 4,
       "audience_label": "Full-stack Python Matang",
       "pros": [
         "Batteries-included",
@@ -409,6 +421,7 @@
       "norm_so_admired": 0.5278481012658228,
       "norm_so_desired": 0.2899022801302932,
       "Market_Dominance_Score": 0.2264,
+      "stars": 3,
       "audience_label": "Microframework Python Ringan",
       "pros": [
         "Sangat ringan",
@@ -441,6 +454,7 @@
       "norm_so_admired": 0.630379746835443,
       "norm_so_desired": 0.19543973941368079,
       "Market_Dominance_Score": 0.212,
+      "stars": 2,
       "audience_label": "Enterprise TypeScript Terstruktur",
       "pros": [
         "Arsitektur modular",
@@ -473,6 +487,7 @@
       "norm_so_admired": 0.6050632911392405,
       "norm_so_desired": 0.21172638436482086,
       "Market_Dominance_Score": 0.207,
+      "stars": 2,
       "audience_label": "Full-stack PHP Elegan",
       "pros": [
         "Sintaks elegan",
@@ -505,6 +520,7 @@
       "norm_so_admired": 0.6582278481012658,
       "norm_so_desired": 0.1791530944625407,
       "Market_Dominance_Score": 0.1697,
+      "stars": 1,
       "audience_label": "Rapid Prototyping Legend",
       "pros": [
         "Convention over configuration",
@@ -537,6 +553,7 @@
       "norm_so_admired": 1.0,
       "norm_so_desired": 0.13029315960912052,
       "Market_Dominance_Score": 0.1547,
+      "stars": 1,
       "audience_label": "Real-time Elixir Powerhouse",
       "pros": [
         "Fault-tolerant (BEAM VM)",
@@ -569,6 +586,7 @@
       "norm_so_admired": 0.7759493670886075,
       "norm_so_desired": 0.4788273615635179,
       "Market_Dominance_Score": 0.2805,
+      "stars": 4,
       "audience_label": "Enterprise Microsoft Ecosystem",
       "pros": [
         "Performa tinggi (Kestrel)",

@@ -1,0 +1,100 @@
+# ============================================================
+# GitHub Actions CI/CD - Framework Trends Tracker
+# ============================================================
+# What this does:
+#   1. Checks Python syntax (flake8) on every push/PR
+#   2. Builds the Next.js dashboard to catch errors
+#   3. Uploads the production build as an artifact
+#
+# When it runs:
+#   - Every push to master branch
+#   - Every Pull Request targeting master
+#
+# Where to see results:
+#   GitHub repo → "Actions" tab
+# ============================================================
+
+name: CI Pipeline
+
+# ── Triggers: when does this workflow run? ──
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+# ── Jobs: what tasks to run ──
+jobs:
+  # ─────────────────────────────────────────────
+  # Job 1: Check Python code quality
+  # ─────────────────────────────────────────────
+  python-check:
+    name: "Python Lint & Syntax Check"
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Get the code from the repo
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Install Python
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # Step 3: Install dependencies
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8
+          if [ -f framework-trends-tracker/requirements.txt ]; then
+            pip install -r framework-trends-tracker/requirements.txt
+          fi
+
+      # Step 4: Check for syntax errors
+      - name: Lint with flake8
+        run: |
+          # Stop on syntax errors or undefined names
+          flake8 framework-trends-tracker/scraper/ --count --select=E9,F63,F7,F82 --show-source --statistics
+          # Warnings (non-blocking)
+          flake8 framework-trends-tracker/scraper/ --count --exit-zero --max-complexity=10 --max-line-length=120 --statistics
+
+  # ─────────────────────────────────────────────
+  # Job 2: Build Next.js Dashboard
+  # ─────────────────────────────────────────────
+  dashboard-build:
+    name: "Next.js Build Check"
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Get the code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Install Node.js
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: client_dashboard/package-lock.json
+
+      # Step 3: Install npm packages
+      - name: Install dependencies
+        working-directory: client_dashboard
+        run: npm ci
+
+      # Step 4: Run production build (catches TypeScript errors)
+      - name: Build Next.js dashboard
+        working-directory: client_dashboard
+        run: npm run build
+
+      # Step 5: Save the build output for later use
+      - name: Upload build artifact
+        if: github.ref == 'refs/heads/master'
+        uses: actions/upload-artifact@v4
+        with:
+          name: dashboard-build
+          path: client_dashboard/.next/
+          retention-days: 7
